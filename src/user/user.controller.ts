@@ -24,13 +24,13 @@ export class UserController {
     return this.userService.create({ email, name, password });
   }
   @Get()
-  async read() {
-    return { users: [] };
+  async list() {
+    return this.userService.list();
   }
 
   @Get(':id')
   async show(@Param('id', ParseIntPipe) id: number) {
-    return { user: {}, id };
+    return this.userService.show(id);
   }
 
   @Put(':id')
