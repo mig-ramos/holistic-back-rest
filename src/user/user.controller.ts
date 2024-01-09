@@ -20,8 +20,8 @@ export class UserController {
 
   @Post()
   // async create(@Body() body: CreateUserDTO) {
-  async create(@Body() { email, name, password }: CreateUserDTO) {
-    return this.userService.create({ email, name, password });
+  async create(@Body() { email, name, password, birthAt }: CreateUserDTO) {
+    return this.userService.create({ email, name, password, birthAt });
   }
   @Get()
   async list() {
@@ -35,36 +35,21 @@ export class UserController {
 
   @Put(':id')
   async update(
-    @Body() { email, name, password }: UpdatePutUserDTO,
+    @Body() data: UpdatePutUserDTO,
     @Param('id', ParseIntPipe) id: number,
   ) {
-    return {
-      method: 'put',
-      email,
-      name,
-      password,
-      id,
-    };
+    return this.userService.update(id, data);
   }
 
   @Patch(':id')
   async updateParcial(
-    @Body() { email, name, password }: UpdatePatchUserDTO,
+    @Body() data: UpdatePatchUserDTO,
     @Param('id', ParseIntPipe) id: number,
   ) {
-    return {
-      method: 'patch',
-      email,
-      name,
-      password,
-      id,
-    };
+    return this.userService.updatePartial(id, data);
   }
-
   @Delete(':id')
   async delete(@Param('id', ParseIntPipe) id: number) {
-    return {
-      id,
-    };
+    return this.userService.delete(id);
   }
 }
