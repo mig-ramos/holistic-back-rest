@@ -14,6 +14,7 @@ import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdatePutUserDTO } from './dto/update-put-user';
 import { UpdatePatchUserDTO } from './dto/update-patcht-user';
 import { UserService } from './user.service';
+import { ParamId } from '../decorators/param-id.decorator';
 // import { LogInterceptor } from '../interceptors/log.interceptor';
 
 // @UseInterceptors(LogInterceptor)
@@ -33,7 +34,9 @@ export class UserController {
   }
 
   @Get(':id')
-  async show(@Param('id', ParseIntPipe) id: number) {
+  // Decorator personalizado posso substituir todos param id
+  async show(@ParamId() id: number) {
+    console.log({ id });
     return this.userService.show(id);
   }
 
