@@ -21,6 +21,7 @@ import { Role } from '../enums/role.enum';
 // import { LogInterceptor } from '../interceptors/log.interceptor';
 import { RoleGuard } from '../guards/role.guard';
 import { AuthGuard } from '../guards/auth.guard';
+import { ThrottlerGuard } from '@nestjs/throttler';
 
 @Roles(Role.Admin)
 @UseGuards(AuthGuard, RoleGuard)
@@ -30,7 +31,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   // @UseInterceptors(LogInterceptor)
-
+  @UseGuards(ThrottlerGuard) // Pode sobrescrever o padrao (new hrottlerGuard({}) )
   @Post()
   // async create(@Body() body: CreateUserDTO) {
   async create(
