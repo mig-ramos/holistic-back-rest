@@ -6,6 +6,13 @@ import { LogInterceptor } from './interceptors/log.interceptor';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    // Em que condições aceitar os acessos de outro endereço
+    // Documentação express/cors
+    // methods: ['GET'],
+    // origin: ['hcode.com.br', 'hcodelab.com.br', '*'],
+  });
+
   app.useGlobalPipes(new ValidationPipe());
 
   app.useGlobalInterceptors(new LogInterceptor());

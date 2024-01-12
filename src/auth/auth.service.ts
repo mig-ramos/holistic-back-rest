@@ -93,7 +93,7 @@ export class AuthService {
     return true;
   }
 
-  async reset(password: string, token: string) {
+  async reset(password: string) {
     // TP DO: Validar o token...
 
     const id = 0;
