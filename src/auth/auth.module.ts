@@ -10,7 +10,7 @@ import { UserEntity } from '../user/entity/user.entity';
 @Module({
   imports: [
     JwtModule.register({
-      secret: process.env.JWT_SCRETE,
+      secret: String(process.env.JWT_SECRETE),
     }),
     forwardRef(() => UserModule),
     FileModule,

@@ -10,6 +10,7 @@ import { UserIdCheckMiddleware } from '../middlewares/user-id-check.middleware';
 import { AuthModule } from '../auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './entity/user.entity';
+import { UserService } from './user.service';
 
 @Module({
   imports: [
